@@ -24,14 +24,17 @@ class ProdutosDemoTests(unittest.TestCase):
         self.assertTrue(all(produto["codigo_barras"].startswith("DEMO-") for produto in produtos))
         self.assertFalse(any("coca-cola" in produto["nome"].casefold() for produto in produtos))
 
-    def test_catalogo_demo_e_criado_apenas_quando_nao_ha_produtos(self):
-        self.assertEqual(self.produtos.criar_catalogo_demo_se_vazio(), 24)
-        self.assertEqual(self.produtos.criar_catalogo_demo_se_vazio(), 0)
-        self.assertEqual(len(self.produtos.listar()), 24)
+    def test_catalogo_demo_e_adicionado_sem_apagar_produtos_existentes(self):
+        self.produtos.criar("Cafe Sao Braz 250g", 13.0, 8, 2)
 
-        self.produtos.criar("Produto cadastrado", 2.0, 5, 1)
-        self.assertEqual(self.produtos.criar_catalogo_demo_se_vazio(), 0)
-        self.assertEqual(len(self.produtos.listar(ativos=None)), 25)
+        self.assertEqual(self.produtos.criar_produtos_demo(), 24)
+        self.assertEqual(self.produtos.criar_produtos_demo(), 0)
+
+        produtos = self.produtos.listar(ativos=None)
+        self.assertEqual(len(produtos), 25)
+        cafe = next(p for p in produtos if p["nome"] == "Cafe Sao Braz 250g")
+        self.assertEqual(cafe["preco"], 13.0)
+        self.assertEqual(cafe["estoque"], 8)
 
     def test_atualiza_descricao_demo_sem_alterar_preco_ou_estoque(self):
         self.produtos.criar("Agua mineral - 1.5 L", 3.49, 7, 2, "DEMO-100008")

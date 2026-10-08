@@ -5,7 +5,7 @@ Aplicacao local de ponto de venda com interface Streamlit, persistencia SQLite e
 ## Recursos
 
 - Cadastro, edicao e desativacao de produtos.
-- Catalogo de demonstracao com 24 produtos, criado automaticamente quando o banco esta vazio.
+- Catalogo de demonstracao com 24 produtos, carregado automaticamente sem duplicar produtos existentes.
 - Carrinho com calculo de subtotal, desconto em reais e troco para pagamentos em dinheiro.
 - Pagamento por dinheiro, Pix, cartao de credito ou debito.
 - Gravacao atomica da venda, dos itens e da baixa de estoque.

@@ -6,7 +6,7 @@ from ui import caixa, dashboard, estoque, produtos
 
 st.set_page_config(page_title="Caixa Registradora", page_icon=":material/storefront:", layout="wide")
 initialize_database()
-ProdutoRepository().criar_catalogo_demo_se_vazio()
+ProdutoRepository().criar_produtos_demo()
 
 if "pagina" not in st.session_state:
     st.session_state.pagina = "Caixa"
