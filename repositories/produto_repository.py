@@ -37,6 +37,11 @@ class ProdutoRepository:
     def __init__(self, database_path: str | Path = DATABASE_PATH):
         self.database_path = database_path
 
+    def criar_catalogo_demo_se_vazio(self) -> int:
+        if self.listar(ativos=None):
+            return 0
+        return self.criar_produtos_demo()
+
     def criar_produtos_demo(self) -> int:
         connection = get_connection(self.database_path)
         try:

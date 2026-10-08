@@ -1,10 +1,12 @@
 import streamlit as st
 
 from database.connection import initialize_database
+from repositories.produto_repository import ProdutoRepository
 from ui import caixa, dashboard, estoque, produtos
 
 st.set_page_config(page_title="Caixa Registradora", page_icon=":material/storefront:", layout="wide")
 initialize_database()
+ProdutoRepository().criar_catalogo_demo_se_vazio()
 
 if "pagina" not in st.session_state:
     st.session_state.pagina = "Caixa"

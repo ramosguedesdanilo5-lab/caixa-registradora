@@ -9,7 +9,7 @@ def render() -> None:
     st.title("Produtos")
     repository = ProdutoRepository()
     with st.expander("Catalogo de demonstracao"):
-        if st.button("Adicionar 8 produtos de exemplo", icon=":material/inventory_2:"):
+        if st.button("Adicionar 24 produtos de exemplo", icon=":material/inventory_2:"):
             inseridos = repository.criar_produtos_demo()
             if inseridos:
                 st.success(f"{inseridos} produto(s) de demonstracao adicionado(s).")
