@@ -1,0 +1,7 @@
+.venv/
+.env
+__pycache__/
+*.py[cod]
+.streamlit/secrets.toml
+database/caixa.db
+database/*.db-*
